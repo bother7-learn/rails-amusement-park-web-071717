@@ -1,2 +1,4 @@
 <h1><%= @attraction.name %></h1>
 <p><%= button_to "Go on this ride", attraction_ride_path(@attraction) %></p>
+
+<%= render partial: "admin_actions", object: @attraction if is_admin? %>

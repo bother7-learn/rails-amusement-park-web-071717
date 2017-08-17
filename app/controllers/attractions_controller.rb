@@ -1,5 +1,5 @@
 class AttractionsController < ApplicationController
-  before_action :set_attraction!, only: [:show, :ride]
+  before_action :set_attraction!, only: [:show, :ride, :edit, :update]
 
 
   def index
@@ -23,9 +23,25 @@ class AttractionsController < ApplicationController
     redirect_to user_path(current_user)
   end
 
+  def new
+    @attraction = Attraction.new
+  end
+
+  def create
+    @attraction = Attraction.create(attraction_params)
+    redirect_to attraction_path(@attraction)
+  end
+
+  def edit
+  end
+
   private
 
   def set_attraction!
     @attraction = Attraction.find(params[:id])
+  end
+
+  def attraction_params
+    params.require(:attraction).permit(:name, :min_height, :nausea_rating, :happiness_rating, :tickets)
   end
 end

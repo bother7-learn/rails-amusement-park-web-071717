@@ -1,6 +1,6 @@
 <h1>Attractions</h1>
-  <ul>
-    <% @attractions.each do |attraction| %>
-      <li><%= link_to "Go on #{attraction.name}", attraction_path(attraction) %></li>
-    <% end %>
-  </ul>
+<% if is_admin? %>
+  <%= render partial: "admin_index", object: @attractions %>
+<% else %>
+  <%= render partial: "user_index", object: @attractions  %>
+<% end %>
